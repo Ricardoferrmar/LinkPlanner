@@ -1490,6 +1490,7 @@ switch action
             tc1 = 'TimeContinuousAmplitudeDiscreteComplex';
             tc2 = 'TimeContinuousAmplitudeContinuousComplex';
             tc5 = 'BandpassSignal';
+            to = 'OpticalSignal';
             toxy = 'OpticalSignalXY';
             signalBrowser = findobj('Tag', 'SignalBrowser');
             if isempty(signalBrowser)
@@ -1507,7 +1508,7 @@ switch action
                     setGlobalchoice(0);
                 end
             else
-                if strcmp(signals(activeSignals(1)).type, tc1) || strcmp(signals(activeSignals(1)).type, tc2) || strcmp(signals(activeSignals(1)).type, tc5)
+                if strcmp(signals(activeSignals(1)).type, tc1) || strcmp(signals(activeSignals(1)).type, tc2) || strcmp(signals(activeSignals(1)).type, tc5) || strcmp(signals(activeSignals(1)).type, to)
                     viewComplex;
                 end
             end           
@@ -1704,6 +1705,7 @@ switch action
             tc1 = 'TimeContinuousAmplitudeDiscreteComplex';
             tc2 = 'TimeContinuousAmplitudeContinuousComplex';
             tc5 = 'BandpassSignal';
+            to = 'OpticalSignal';
             if isempty(signalBrowser) 
                 if length(getGlobalchoice) == length(choicer)
                     if getGlobalchoice == choicer
@@ -1714,7 +1716,7 @@ switch action
                 % Delete old "stems"
                 delete(findobj('Tag', 'st1'));
                 % View
-                if strcmp(signals(activeSignals(1)).type, tc1) || strcmp(signals(activeSignals(1)).type, tc2) || strcmp(signals(activeSignals(1)).type, tc5) 
+                if strcmp(signals(activeSignals(1)).type, tc1) || strcmp(signals(activeSignals(1)).type, tc2) || strcmp(signals(activeSignals(1)).type, tc5) || strcmp(signals(activeSignals(1)).type, to) 
                     viewComplex(1);
                 else
                     sptoolfig = findobj(0, 'Tag', 'sptool');
@@ -2604,6 +2606,7 @@ set(findobj('Tag', 'sigbrowser.sigbrowseAdapter:view'), 'Enable', 'on');
 tc1 = 'TimeContinuousAmplitudeDiscreteComplex';
 tc2 = 'TimeContinuousAmplitudeContinuousComplex'; 
 tc5 = 'BandpassSignal';
+to = 'OpticalSignal';
 toxy = 'OpticalSignalXY';
 activeSignals = get(findobj('Tag', 'list1'), 'Value');
 N = length(activeSignals);
@@ -2612,7 +2615,7 @@ signals = sptool('Signals');
 inc = 1;
 indComplex = zeros(1, N);
 for k = 1:N
-    if strcmp(signals(activeSignals(k)).type, tc1) || strcmp(signals(activeSignals(k)).type, tc2) || strcmp(signals(activeSignals(k)).type, tc5)
+    if strcmp(signals(activeSignals(k)).type, tc1) || strcmp(signals(activeSignals(k)).type, tc2) || strcmp(signals(activeSignals(k)).type, tc5) || strcmp(signals(activeSignals(k)).type, to)
         indComplex(inc) = activeSignals(k);
         inc = inc + 1;
     end
@@ -2974,6 +2977,7 @@ signals = sptool('Signals');
 tc1 = 'TimeContinuousAmplitudeDiscreteComplex';
 tc2 = 'TimeContinuousAmplitudeContinuousComplex';
 tc5 = 'BandpassSignal';
+to = 'OpticalSignal';
 for k = 1:N
     samplesPerSymbol = signals(activeSignals(k)).SPTIdentifier.version;
     x = signals(activeSignals(k)).data;
@@ -2981,7 +2985,7 @@ for k = 1:N
     period = 2; % Number of represented periods
     offset = 0; % Diagram offset
     eyediagram(x, n, period, offset); 
-    if strcmp(signals(activeSignals(1)).type, tc1) || strcmp(signals(activeSignals(1)).type, tc2) || strcmp(signals(activeSignals(1)).type, tc5) 
+    if strcmp(signals(activeSignals(1)).type, tc1) || strcmp(signals(activeSignals(1)).type, tc2) || strcmp(signals(activeSignals(1)).type, tc5) || strcmp(signals(activeSignals(1)).type, to)
         subplot(2, 1, 1);
         title(strjoin({'Eye Diagram for In-Phase', signals(activeSignals(k)).label}, ' '));
         xlabel('t / T');
@@ -3644,8 +3648,9 @@ td2 = 'TimeDiscreteAmplitudeContinuousReal';
 tc1 = 'TimeContinuousAmplitudeDiscreteComplex';
 tc2 = 'TimeContinuousAmplitudeContinuousComplex';
 tc5 = 'BandpassSignal';
+to = 'OpticalSignal';
 if N == 1 
-    if ~strcmp(signals(activeSignals(1)).type, tc1) && ~strcmp(signals(activeSignals(1)).type, tc2) && ~strcmp(signals(activeSignals(1)).type, tc5)
+    if ~strcmp(signals(activeSignals(1)).type, tc1) && ~strcmp(signals(activeSignals(1)).type, tc2) && ~strcmp(signals(activeSignals(1)).type, tc5) && ~strcmp(signals(activeSignals(1)).type, to)
         xlim = get(findobj('Tag', 'DisplayAxes1_RealMag'), 'XLim');
         xPan = xlim(2);
         if strcmp(signals(activeSignals(1)).type, td1) || strcmp(signals(activeSignals(1)).type, td2)

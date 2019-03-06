@@ -54,6 +54,7 @@ int main() {
 	Sink B_1{ { &S0 },{} };
 
 	MQamMapper B2{ { &S1 }, { &S2, &S3 } };
+	B2.setIqAmplitudes({ {1,1},{-1,1},{1,-1},{-1,-1} });
 
 	DiscreteToContinuousTime B3{ { &S2 }, { &S4 } };
 

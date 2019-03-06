@@ -12,6 +12,7 @@ tc2 = 'TimeDiscreteAmplitudeContinuousComplex';
 tc3 = 'TimeContinuousAmplitudeDiscreteComplex';
 tc4 = 'TimeContinuousAmplitudeContinuousComplex';
 tc5 = 'BandpassSignal';
+to  = 'OpticalSignal';
 toxy = 'OpticalSignalXY';
 
 %% Get global variable "nRead"
@@ -58,7 +59,7 @@ if strcmp(type, tb) % Binary signals
 end
 
  
-if strcmp(type, tc1) || strcmp(type, tc2) || strcmp(type, tc3) || strcmp(type, tc4) || strcmp(type, tc5)% Complex signals
+if strcmp(type, tc1) || strcmp(type, tc2) || strcmp(type, tc3) || strcmp(type, tc4) || strcmp(type, tc5) || strcmp(type, to)% Complex signals
    data = fread(fid, 2*double(samplesPerSymbol)*nReadr, t_complexr);
    data = data(1:2:end) + 1i.*data(2:2:end);
    data = real(data)' + imag(data)'.*1i;

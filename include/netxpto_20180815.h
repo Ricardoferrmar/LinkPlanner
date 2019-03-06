@@ -105,7 +105,7 @@ std::ostream& operator<<(std::ostream &out, const complex<T> &cx)
 // #
 // ####################################################################################################
 
-enum class signal_type { Binary, TimeDiscreteAmplitudeContinuousReal, TimeContinuousAmplitudeContinuousReal, OpticalSignal, PhotonStreamXY, PhotonStreamMP, PhotonStreamMPXY };
+enum class signal_type { Binary, TimeDiscreteAmplitudeContinuousReal, TimeContinuousAmplitudeContinuousReal, TimeDiscreteAmplitudeContinuousComplex, TimeContinuousAmplitudeContinuousComplex, OpticalSignal, PhotonStreamXY, PhotonStreamMP, PhotonStreamMPXY };
 
 //enum class signal_write_mode {Binary, Ascii};
 
@@ -327,6 +327,12 @@ private:
 			case signal_type::TimeContinuousAmplitudeContinuousReal:
 				typeName = "TimeContinuousAmplitudeContinuousReal";
 				break;
+			case signal_type::TimeDiscreteAmplitudeContinuousComplex:
+				typeName = "TimeDiscreteAmplitudeContinuousComplex";
+				break;
+			case signal_type::TimeContinuousAmplitudeContinuousComplex:
+				typeName = "TimeContinuousAmplitudeContinuousComplex";
+				break;
 			case signal_type::OpticalSignal:
 				typeName = "OpticalSignal";
 				break;
@@ -352,6 +358,8 @@ private:
 using Binary = BaseSignal< t_binary, signal_type::Binary, signal_value_type::t_binary> ;
 using TimeDiscreteAmplitudeContinuousReal = BaseSignal<t_real, signal_type::TimeDiscreteAmplitudeContinuousReal, signal_value_type::t_real>;
 using TimeContinuousAmplitudeContinuousReal = BaseSignal<t_real, signal_type::TimeContinuousAmplitudeContinuousReal, signal_value_type::t_real>;
+using TimeDiscreteAmplitudeContinuousComplex = BaseSignal<t_complex, signal_type::TimeDiscreteAmplitudeContinuousComplex, signal_value_type::t_complex>;
+using TimeContinuousAmplitudeContinuousComplex = BaseSignal<t_complex, signal_type::TimeContinuousAmplitudeContinuousComplex, signal_value_type::t_complex>;
 using OpticalSignal = BaseSignal<t_complex, signal_type::OpticalSignal, signal_value_type::t_complex>;
 using PhotonStreamXY = BaseSignal<t_complex_xy, signal_type::PhotonStreamXY, signal_value_type::t_complex_xy>;
 //using PhotonStreamMP = BaseSignal<t_photon_mp, signal_type::PhotonStreamMP, signal_value_type::t_photon_mp>;
